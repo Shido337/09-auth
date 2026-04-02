@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useAuthStore } from "@/lib/store/authStore";
-import { checkSession } from "@/lib/api/clientApi";
+import { checkSession, getMe } from "@/lib/api/clientApi";
 import { usePathname, useRouter } from "next/navigation";
 import css from "./AuthProvider.module.css";
 
@@ -24,8 +24,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     const initAuth = async () => {
       setIsLoading(true);
       try {
-        const user = await checkSession();
-        if (user) {
+        const result = await checkSession();
+        if (result?.success) {
+          const user = await getMe();
           setUser(user);
         } else {
           clearIsAuthenticated();

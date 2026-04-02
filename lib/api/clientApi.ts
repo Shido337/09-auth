@@ -16,8 +16,8 @@ export const logout = async () => {
   await api.post("/auth/logout");
 };
 
-export const checkSession = async () => {
-  const { data } = await api.get<User | null>("/auth/session");
+export const checkSession = async (): Promise<{ success: boolean }> => {
+  const { data } = await api.get<{ success: boolean }>("/auth/session");
   return data;
 };
 
