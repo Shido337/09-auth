@@ -17,13 +17,11 @@ const appUrl = "https://notehub.vercel.app";
 
 export const metadata: Metadata = {
   title: "NoteHub",
-  description:
-    "A simple and efficient application for managing personal notes.",
+  description: "A simple and efficient application for managing personal notes.",
   metadataBase: new URL(appUrl),
   openGraph: {
     title: "NoteHub",
-    description:
-      "A simple and efficient application for managing personal notes.",
+    description: "A simple and efficient application for managing personal notes.",
     url: appUrl,
     images: ["https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"],
   },
@@ -31,8 +29,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -41,6 +41,7 @@ export default function RootLayout({
           <AuthProvider>
             <Header />
             {children}
+            {modal}
             <Footer />
           </AuthProvider>
         </TanStackProvider>
