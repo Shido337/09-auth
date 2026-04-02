@@ -66,3 +66,13 @@
   display: inline-block;
   background-color: transparent;
 }
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+  padding: 0 4px;
+  line-height: 1;
+}

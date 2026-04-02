@@ -12,8 +12,7 @@ interface AuthProviderProps {
 
 const PRIVATE_PATHS = ["/profile", "/notes"];
 
-const isPrivatePath = (pathname: string) =>
-  PRIVATE_PATHS.some((p) => pathname.startsWith(p));
+const isPrivatePath = (pathname: string) => PRIVATE_PATHS.some((p) => pathname.startsWith(p));
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isLoading, setIsLoading] = useState(true);

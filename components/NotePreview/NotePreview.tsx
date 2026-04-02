@@ -1,6 +1,6 @@
-import { notFound } from 'next/navigation';
-import { fetchNoteById } from '@/lib/api/serverApi';
-import css from './NotePreview.module.css';
+import { notFound } from "next/navigation";
+import { fetchNoteById } from "@/lib/api/serverApi";
+import css from "./NotePreview.module.css";
 
 interface NotePreviewProps {
   id: string;

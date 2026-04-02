@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { fetchNoteById } from '@/lib/api';
+import { fetchNoteById } from '@/lib/api/clientApi';
 import Modal from '@/components/Modal/Modal';
 import css from '@/components/NotePreview/NotePreview.module.css';
 
@@ -28,6 +28,7 @@ export default function NotePreviewClient({ id }: NotePreviewClientProps) {
         <div className={css.item}>
           <div className={css.header}>
             <h2>{note.title}</h2>
+            <button onClick={() => router.back()} className={css.closeButton}>✕</button>
           </div>
           <p className={css.tag}>{note.tag}</p>
           <p className={css.content}>{note.content}</p>

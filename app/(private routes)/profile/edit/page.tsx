@@ -23,7 +23,7 @@ const EditProfilePage = () => {
   }, []);
 
   if (!user) return null;
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const updated = await updateMe(username);
     setStoreUser(updated);
@@ -62,11 +62,7 @@ const EditProfilePage = () => {
             <button type="submit" className={css.saveButton}>
               Save
             </button>
-            <button
-              type="button"
-              className={css.cancelButton}
-              onClick={handleCancel}
-            >
+            <button type="button" className={css.cancelButton} onClick={handleCancel}>
               Cancel
             </button>
           </div>

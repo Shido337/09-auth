@@ -1,27 +1,29 @@
-import { cookies } from "next/headers";
 import axios from "axios";
 import type { User } from "@/types/user";
 import type { Note } from "@/types/note";
 
-async function getApi() {
-  const cookieStore = await cookies();
-  const cookieHeader = cookieStore
-    .getAll()
-    .map((c) => `${c.name}=${c.value}`)
-    .join("; ");
+async function getApi(cookieHeader?: string) {
+  let header = cookieHeader;
+  if (!header) {
+    const { cookies } = await import("next/headers");
+    const cookieStore = await cookies();
+    header = cookieStore
+      .getAll()
+      .map((c) => `${c.name}=${c.value}`)
+      .join("; ");
+  }
 
   return axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL + "/api",
     headers: {
-      Cookie: cookieHeader,
+      Cookie: header,
     },
   });
 }
 
-export const checkSession = async () => {
-  const serverApi = await getApi();
-  const { data } = await serverApi.get<User | null>("/auth/session");
-  return data;
+export const checkSession = async (cookieHeader?: string) => {
+  const serverApi = await getApi(cookieHeader);
+  return await serverApi.get<User | null>("/auth/session");
 };
 
 export const getMe = async () => {
