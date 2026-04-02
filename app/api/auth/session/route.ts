@@ -35,8 +35,9 @@ export async function GET() {
           if (parsed.accessToken) cookieStore.set("accessToken", parsed.accessToken, options);
           if (parsed.refreshToken) cookieStore.set("refreshToken", parsed.refreshToken, options);
         }
-        return NextResponse.json({ success: true }, { status: 200 });
       }
+
+      return NextResponse.json({ success: true }, { status: 200 });
     }
 
     return NextResponse.json({ success: false }, { status: 200 });
